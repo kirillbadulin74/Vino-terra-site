@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Дегустация и хранение — ВИНОТЕРРА</title>
+<meta name="description" content="Как правильно дегустировать вино, при какой температуре подавать и как хранить дома. Практические советы.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add("js");</script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="nav">
+  <nav class="nav-inner">
+    <a href="index.html" class="brand"><span class="logo">🍇</span> ВИНОТЕРРА</a>
+    <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="index.html">Главная</a>
+      <a href="academy.html">Академия вина</a>
+      <a href="russia.html">Россия и СНГ</a>
+      <a href="world.html">Мир</a>
+      <a href="islands.html">Острова</a>
+      <a href="tasting.html" class="active">Дегустация</a>
+      <a href="about.html">О проекте</a>
+    </div>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <img class="hero-bg" src="assets/img/tasting_hero.jpg" alt="Дегустация вина в погребе">
+  <div class="wrap">
+    <div class="crumbs"><a href="index.html">Главная</a> / Дегустация</div>
+    <h1>Дегустация и хранение</h1>
+    <p>Пять чувств, один бокал. Научитесь читать вино — и храните его так, чтобы каждая бутылка раскрылась полностью.</p>
+  </div>
+</section>
+
+<!-- Шаги дегустации -->
+<section class="section" id="taste">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Ритуал</span><h2>Как дегустировать вино</h2><p>Не торопитесь — вино любит внимание.</p></div>
+    <div class="grid g3" id="tasting-grid"></div>
+  </div>
+</section>
+
+<!-- Температурный гид -->
+<section class="section tint">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">🌡️ Температура подачи</span><h2>При скольки градусах подавать</h2><p>Слишком тёплое красное и ледяное белое — частая ошибка. Вот ориентиры.</p></div>
+    <div class="grid g4" id="temp-grid"></div>
+  </div>
+</section>
+
+<!-- Хранение -->
+<section class="section" id="storage">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Домашний погреб</span><h2>Как хранить вино</h2><p>Пять правил, чтобы бутылка дождалась своего часа.</p></div>
+    <div class="grid g2" id="storage-grid" style="max-width:900px;margin:0 auto"></div>
+  </div>
+</section>
+
+<section class="section tint-wine">
+  <div class="wrap"><div class="assistant-band reveal">
+    <img src="assets/img/assistant_bot.jpg" alt="Нейро-сомелье">
+    <div class="txt"><span class="badge-live">● Онлайн</span><h3>С чем подать эту бутылку?</h3><p>Нейро-сомелье соберёт идеальную пару «вино + блюдо» и подскажет температуру подачи под конкретную бутылку. Спросите его прямо здесь, на сайте.</p><button class="btn btn-primary mt-s" data-open-assistant>Спросить сомелье</button></div>
+  </div></div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="fcol"><a href="index.html" class="brand"><span class="logo">🍇</span> ВИНОТЕРРА</a><p style="margin-top:14px;opacity:.8;font-size:.94rem">Интерактивный атлас виноделия мира.</p></div>
+      <div class="fcol"><h4>Разделы</h4><a href="academy.html">Академия вина</a><a href="russia.html">Россия и СНГ</a><a href="world.html">Вина мира</a><a href="islands.html">Острова</a></div>
+      <div class="fcol"><h4>Гид</h4><a href="#taste">Дегустация</a><a href="#storage">Хранение</a><a href="academy.html#grapes">Сорта винограда</a></div>
+      <div class="fcol"><h4>Помощник</h4><a href="#" data-open-assistant>Нейро-сомелье</a></div>
+    </div>
+    <div class="footer-bottom">© 2026 ВИНОТЕРРА · 18+ · Наслаждайтесь вкусом, знайте меру</div>
+  </div>
+</footer>
+
+<script src="data/wine-data.js"></script>
+<script src="assets/js/api-config.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+(function(){
+  var A=(window.WINE&&WINE.academy)||{}, esc=VT.esc;
+  var emo=["👁️","🌀","👃","👅","🌡️","🥂","🍇","✨"];
+  (A.tasting||[]).forEach(function(t,i){
+    var d=VT.el("div","card reveal","<div class='card-body'><div style='font-size:2rem'>"+(emo[i]||"🍷")+"</div><h3>"+esc(t.title)+"</h3><p>"+esc(t.text)+"</p></div>");
+    document.getElementById("tasting-grid").appendChild(d);
+  });
+  // температурный гид (статично — наглядно)
+  var temps=[
+    {n:"Игристое",t:"6–8 °C",c:"#f2e2a8"},
+    {n:"Лёгкое белое / розе",t:"8–10 °C",c:"#e8a0a8"},
+    {n:"Насыщенное белое",t:"10–12 °C",c:"#f6c453"},
+    {n:"Лёгкое красное",t:"13–15 °C",c:"#c9531f"},
+    {n:"Полнотелое красное",t:"16–18 °C",c:"#7b1e2b"},
+    {n:"Креплёное / десертное",t:"12–16 °C",c:"#e8851a"},
+    {n:"Оранжевое (квеври)",t:"12–14 °C",c:"#ef6c2e"},
+    {n:"Сладкое белое",t:"6–9 °C",c:"#fbe3a3"}
+  ];
+  temps.forEach(function(x){
+    var d=VT.el("div","card reveal");
+    d.innerHTML="<div class='card-body' style='align-items:center;text-align:center'><div style='width:54px;height:54px;border-radius:50%;background:"+x.c+";border:2px solid var(--line)'></div><h3 style='font-size:1.05rem'>"+esc(x.n)+"</h3><p style='font-family:var(--serif);font-weight:800;font-size:1.35rem;color:var(--terracotta)'>"+esc(x.t)+"</p></div>";
+    document.getElementById("temp-grid").appendChild(d);
+  });
+  (A.storage||[]).forEach(function(s,i){
+    var d=VT.el("div","step reveal","<div class='num'>"+(i+1)+"</div><div><h4>"+esc(s.title)+"</h4><p>"+esc(s.text)+"</p></div>");
+    document.getElementById("storage-grid").appendChild(d);
+  });
+  VT.initReveal();
+})();
+</script>
+</body>
+</html>

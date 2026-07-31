@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Островное виноделие — ВИНОТЕРРА</title>
+<meta name="description" content="Вулканическое виноделие Атлантики и экзотика Тихого океана: Мадейра, Канары, Азоры, Гавайи и другие острова.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add("js");</script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="nav">
+  <nav class="nav-inner">
+    <a href="index.html" class="brand"><span class="logo">🍇</span> ВИНОТЕРРА</a>
+    <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="index.html">Главная</a>
+      <a href="academy.html">Академия вина</a>
+      <a href="russia.html">Россия и СНГ</a>
+      <a href="world.html">Мир</a>
+      <a href="islands.html" class="active">Острова</a>
+      <a href="tasting.html">Дегустация</a>
+      <a href="about.html">О проекте</a>
+    </div>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <img class="hero-bg" src="assets/img/islands_hero.jpg" alt="Вулканические виноградники острова">
+  <div class="wrap">
+    <div class="crumbs"><a href="index.html">Главная</a> / Острова</div>
+    <h1>Острова: вино на краю света</h1>
+    <p id="isl-intro">Вулканический пепел, океанский бриз и виноградники, которым нет аналогов. Самое экзотическое вино планеты рождается на островах.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">🌊 Атлантический океан</span><h2>Вулканическая классика</h2><p>Острова, где лоза растёт на застывшей лаве и чёрном песке.</p></div>
+    <div class="grid g2" id="atlantic-grid"></div>
+  </div>
+</section>
+
+<section class="section tint-wine">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">🏝️ Тихий океан</span><h2>Тропическая экзотика</h2><p>Виноделие там, где его совсем не ждёшь — среди пальм и вулканов.</p></div>
+    <div class="grid g3" id="pacific-grid"></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap"><div class="assistant-band reveal">
+    <img src="assets/img/assistant_bot.jpg" alt="Нейро-сомелье">
+    <div class="txt"><span class="badge-live">● Онлайн</span><h3>Хотите экзотики в бокале?</h3><p>Нейро-сомелье подскажет, где купить мадеру или канарское вино и чем их заменить, если не найдёте. Спросите его прямо здесь, на сайте.</p><button class="btn btn-primary mt-s" data-open-assistant>Спросить сомелье</button></div>
+  </div></div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="fcol"><a href="index.html" class="brand"><span class="logo">🍇</span> ВИНОТЕРРА</a><p style="margin-top:14px;opacity:.8;font-size:.94rem">Интерактивный атлас виноделия мира.</p></div>
+      <div class="fcol"><h4>Разделы</h4><a href="academy.html">Академия вина</a><a href="russia.html">Россия и СНГ</a><a href="world.html">Вина мира</a><a href="islands.html">Острова</a></div>
+      <div class="fcol"><h4>Гид</h4><a href="tasting.html">Дегустация</a><a href="academy.html#grapes">Сорта винограда</a><a href="about.html">О проекте</a></div>
+      <div class="fcol"><h4>Помощник</h4><a href="#" data-open-assistant>Нейро-сомелье</a></div>
+    </div>
+    <div class="footer-bottom">© 2026 ВИНОТЕРРА · 18+ · Наслаждайтесь вкусом, знайте меру</div>
+  </div>
+</footer>
+
+<script src="data/wine-data.js"></script>
+<script src="assets/js/api-config.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+(function(){
+  var I=(window.WINE&&WINE.islands)||{};
+  if(I.intro) document.getElementById("isl-intro").textContent=I.intro;
+  VT.renderGrid({host:"atlantic-grid",items:I.atlantic||[],imgBase:"assets/img/i_"});
+  VT.renderGrid({host:"pacific-grid",items:I.pacific||[],imgBase:"assets/img/i_"});
+  VT.initReveal();
+})();
+</script>
+</body>
+</html>

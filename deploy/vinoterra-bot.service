@@ -1,0 +1,20 @@
+# Telegram-бот Нейро-сомелье (long polling)
+# Положить в /etc/systemd/system/vinoterra-bot.service
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now vinoterra-bot
+[Unit]
+Description=VINOTERRA Telegram bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=vinoterra
+WorkingDirectory=/opt/vinoterra/backend
+ExecStart=/opt/vinoterra/backend/.venv/bin/python run_telegram_bot.py
+Restart=on-failure
+RestartSec=10
+TimeoutStartSec=600
+
+[Install]
+WantedBy=multi-user.target

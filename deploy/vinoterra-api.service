@@ -1,0 +1,22 @@
+# API Нейро-сомелье (FastAPI/uvicorn)
+# Положить в /etc/systemd/system/vinoterra-api.service
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now vinoterra-api
+[Unit]
+Description=VINOTERRA Sommelier API (FastAPI)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=vinoterra
+WorkingDirectory=/opt/vinoterra/backend
+# .env читается самим приложением (python-dotenv в run_web_api.py)
+ExecStart=/opt/vinoterra/backend/.venv/bin/python run_web_api.py
+Restart=on-failure
+RestartSec=5
+# Первый старт с пустым кешем может строить эмбеддинги — не убивать раньше времени
+TimeoutStartSec=600
+
+[Install]
+WantedBy=multi-user.target

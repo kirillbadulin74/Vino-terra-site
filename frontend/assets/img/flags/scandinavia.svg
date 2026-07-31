@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-dk-se" viewBox="0 0 640 480">
+  <svg x="10" y="120" width="300" height="240" viewBox="0 0 640 480" preserveAspectRatio="xMidYMid meet">
+    <path fill="#c8102e" d="M0 0h640.1v480H0z"/>
+    <path fill="#fff" d="M205.7 0h68.6v480h-68.6z"/>
+    <path fill="#fff" d="M0 205.7h640.1v68.6H0z"/>
+    <path fill="none" stroke="#0002" stroke-width="10" d="M5 5h630v470H5z"/>
+  </svg>
+  <svg x="330" y="120" width="300" height="240" viewBox="0 0 640 480" preserveAspectRatio="xMidYMid meet">
+    <path fill="#005293" d="M0 0h640v480H0z"/>
+    <path fill="#fecb00" d="M176 0v192H0v96h176v192h96V288h368v-96H272V0z"/>
+    <path fill="none" stroke="#0002" stroke-width="10" d="M5 5h630v470H5z"/>
+  </svg>
+</svg>

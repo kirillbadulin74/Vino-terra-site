@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Россия и СНГ — ВИНОТЕРРА</title>
+<meta name="description" content="Винодельческие регионы России — Крым, Кубань, Дагестан, Дон — и вина стран бывшего СССР: Грузия, Армения, Молдова, Средняя Азия.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add("js");</script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="nav">
+  <nav class="nav-inner">
+    <a href="index.html" class="brand"><span class="logo">🍇</span> ВИНОТЕРРА</a>
+    <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="index.html">Главная</a>
+      <a href="academy.html">Академия вина</a>
+      <a href="russia.html" class="active">Россия и СНГ</a>
+      <a href="world.html">Мир</a>
+      <a href="islands.html">Острова</a>
+      <a href="tasting.html">Дегустация</a>
+      <a href="about.html">О проекте</a>
+    </div>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <img class="hero-bg" src="assets/img/russia_hero.jpg" alt="Виноградники Кавказа и Крыма">
+  <div class="wrap">
+    <div class="crumbs"><a href="index.html">Главная</a> / Россия и СНГ</div>
+    <h1>Россия и постсоветское пространство</h1>
+    <p id="ru-intro">Виноделие России переживает возрождение, а соседние страны хранят древнейшие традиции — от грузинских квеври до армянского коньяка.</p>
+  </div>
+</section>
+
+<!-- Регионы России -->
+<section class="section" id="regions">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow"><span class="flag-ru"></span>Винные регионы России</span><h2>Куда поехать за российским вином</h2><p>Семь винодельческих краёв — каждый со своим характером, сортами и маршрутами.</p></div>
+    <div class="grid g2" id="regions-grid-1"></div>
+    <div class="grid g3" id="regions-grid-2" style="margin-top:24px"></div>
+    <div class="grid g2" id="regions-grid-3" style="margin-top:24px"></div>
+  </div>
+</section>
+
+<!-- Факты России -->
+<section class="section-sm tint">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:30px"><span class="eyebrow">А вы знали?</span><h2>Факты о вине России</h2></div>
+    <div class="grid g3" id="ru-facts"></div>
+  </div>
+</section>
+
+<!-- Страны СНГ -->
+<section class="section" id="countries">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Бывший СССР</span><h2>Вина соседних стран</h2><p>Колыбель виноделия и оазисы Средней Азии. Найдите страну для виртуального путешествия.</p></div>
+    <div class="searchbox"><span>🔎</span><input id="c-search" placeholder="Поиск страны, сорта или вина…"></div>
+    <div class="grid g2" id="countries-grid-1"></div>
+    <div class="grid g3" id="countries-grid-2" style="margin-top:24px"></div>
+    <div class="grid g2" id="countries-grid-3" style="margin-top:24px"></div>
+    <div class="grid g3" id="countries-grid-4" style="margin-top:24px"></div>
+    <div class="empty" id="countries-empty">Ничего не найдено.</div>
+  </div>
+</section>
+
+<section class="section tint-wine">
+  <div class="wrap"><div class="assistant-band reveal">
+    <img src="assets/img/assistant_bot.jpg" alt="Нейро-сомелье">
+    <div class="txt"><span class="badge-live">● Онлайн</span><h3>Не знаете, с чего начать знакомство?</h3><p>Нейро-сомелье подскажет, какое российское или грузинское вино открыть под ваше блюдо и настроение. Спросите его прямо здесь, на сайте.</p><button class="btn btn-primary mt-s" data-open-assistant>Спросить сомелье</button></div>
+  </div></div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="fcol"><a href="index.html" class="brand"><span class="logo">🍇</span> ВИНОТЕРРА</a><p style="margin-top:14px;opacity:.8;font-size:.94rem">Интерактивный атлас виноделия мира.</p></div>
+      <div class="fcol"><h4>Разделы</h4><a href="academy.html">Академия вина</a><a href="russia.html">Россия и СНГ</a><a href="world.html">Вина мира</a><a href="islands.html">Острова</a></div>
+      <div class="fcol"><h4>Регионы</h4><a href="#regions">Крым и Кубань</a><a href="#regions">Дагестан и Дон</a><a href="#countries">Грузия и Армения</a><a href="#countries">Средняя Азия</a></div>
+      <div class="fcol"><h4>Помощник</h4><a href="#" data-open-assistant>Нейро-сомелье</a></div>
+    </div>
+    <div class="footer-bottom">© 2026 ВИНОТЕРРА · 18+ · Наслаждайтесь вкусом, знайте меру</div>
+  </div>
+</footer>
+
+<script src="data/wine-data.js"></script>
+<script src="assets/js/api-config.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+(function(){
+  var R=(window.WINE&&WINE.russia)||{};
+  if(R.russia_intro) document.getElementById("ru-intro").textContent=R.russia_intro;
+  // регионы: раскладка рядами 2 + 3 + 2 по значимости (картинки r_<id>.jpg)
+  var regs=R.russia_regions||[];
+  function regById(ids){return ids.map(function(id){return regs.filter(function(r){return r.id===id;})[0];}).filter(Boolean);}
+  VT.renderGrid({host:"regions-grid-1",items:regById(["krym","kuban"]),imgBase:"assets/img/r_"});
+  VT.renderGrid({host:"regions-grid-2",items:regById(["dolina_dona","dagestan","stavropole"]),imgBase:"assets/img/r_"});
+  VT.renderGrid({host:"regions-grid-3",items:regById(["nizhnyaya_volga","dolina_tereka"]),imgBase:"assets/img/r_"});
+  // факты
+  (R.russia_facts||[]).forEach(function(t,i){
+    var d=VT.el("div","fact reveal","<div class='k'>Факт №"+(i+1)+"</div><div class='v'>"+VT.esc(t)+"</div>");
+    document.getElementById("ru-facts").appendChild(d);
+  });
+  // страны СНГ: раскладка 2 + 3 + 2 + 3 (Закавказье и Средняя Азия сгруппированы; картинки cis_<id>.jpg)
+  var cs=R.countries||[];
+  function cisById(ids){return ids.map(function(id){return cs.filter(function(c){return c.id===id;})[0];}).filter(Boolean);}
+  VT.renderGrid({host:"countries-grid-1",items:cisById(["moldova","ukraine"]),imgBase:"assets/img/cis_",flagBase:"assets/img/flags/"});
+  VT.renderGrid({host:"countries-grid-2",items:cisById(["georgia","armenia","azerbaijan"]),imgBase:"assets/img/cis_",flagBase:"assets/img/flags/"});
+  VT.renderGrid({host:"countries-grid-3",items:cisById(["kazakhstan","uzbekistan"]),imgBase:"assets/img/cis_",flagBase:"assets/img/flags/"});
+  VT.renderGrid({host:"countries-grid-4",items:cisById(["kyrgyzstan","tajikistan","turkmenistan"]),imgBase:"assets/img/cis_",flagBase:"assets/img/flags/"});
+  // поиск по всем рядам СНГ сразу + скрытие опустевших рядов
+  var cGrids=[1,2,3,4].map(function(n){return document.getElementById("countries-grid-"+n);});
+  var cSearch=document.getElementById("c-search"), cEmpty=document.getElementById("countries-empty");
+  function cApply(){
+    var q=cSearch.value.trim().toLowerCase(), shown=0;
+    cGrids.forEach(function(g){
+      var vis=0;
+      g.querySelectorAll(".card").forEach(function(c){
+        var ok=!q||c.getAttribute("data-search").indexOf(q)>-1;
+        c.style.display=ok?"":"none"; if(ok){vis++;shown++;}
+      });
+      g.style.display=vis?"":"none";
+    });
+    cEmpty.style.display=shown?"none":"block";
+  }
+  cSearch.addEventListener("input",cApply);
+  VT.initReveal();
+})();
+</script>
+</body>
+</html>

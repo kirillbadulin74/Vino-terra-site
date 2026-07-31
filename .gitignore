@@ -1,0 +1,15 @@
+# Секреты
+.env
+*.key
+
+# Системное
+Thumbs.db
+.DS_Store
+__pycache__/
+
+# Рабочее
+_cmp/
+_shots/
+HANDOFF.md
+feedback/
+.claude/settings.local.json

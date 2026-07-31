@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вина мира — ВИНОТЕРРА</title>
+<meta name="description" content="Виноделие 60 стран на шести континентах: Европа, Азия, Африка, Северная и Южная Америка, Австралия и Океания. Что купить и попробовать.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add("js");</script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="nav">
+  <nav class="nav-inner">
+    <a href="index.html" class="brand"><span class="logo">🍇</span> ВИНОТЕРРА</a>
+    <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="index.html">Главная</a>
+      <a href="academy.html">Академия вина</a>
+      <a href="russia.html">Россия и СНГ</a>
+      <a href="world.html" class="active">Мир</a>
+      <a href="islands.html">Острова</a>
+      <a href="tasting.html">Дегустация</a>
+      <a href="about.html">О проекте</a>
+    </div>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <img class="hero-bg" src="assets/img/world_hero.jpg" alt="Виноградники мира">
+  <div class="wrap">
+    <div class="crumbs"><a href="index.html">Главная</a> / Вина мира</div>
+    <h1>Вина мира</h1>
+    <p>Шестьдесят стран, шесть континентов, тысячи вкусов. Выберите континент или найдите страну — и узнайте, какую бутылку открыть для путешествия по вкусу.</p>
+  </div>
+</section>
+
+<!-- Континенты -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Шесть континентов</span><h2>Выберите часть света</h2></div>
+    <div class="grid g3" id="cont-grid"></div>
+  </div>
+</section>
+
+<!-- Страны -->
+<section class="section tint" id="countries">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">Атлас стран</span><h2>Виноделие по странам</h2><p>Фильтруйте по континенту или ищите конкретную страну.</p></div>
+    <div class="searchbox"><span>🔎</span><input id="w-search" placeholder="Поиск страны, региона или сорта…"></div>
+    <div class="filterbar" id="w-filter">
+      <button class="filter-btn active" data-cont="all">🌍 Все</button>
+      <button class="filter-btn" data-cont="europe">Европа</button>
+      <button class="filter-btn" data-cont="asia">Азия</button>
+      <button class="filter-btn" data-cont="africa">Африка</button>
+      <button class="filter-btn" data-cont="namerica">Сев. Америка</button>
+      <button class="filter-btn" data-cont="samerica">Юж. Америка</button>
+      <button class="filter-btn" data-cont="oceania">Океания</button>
+    </div>
+    <div class="grid g3" id="w-grid"></div>
+    <div class="empty" id="w-empty">Ничего не найдено — попробуйте другой запрос.</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap"><div class="assistant-band reveal" style="background:var(--grad-warm)">
+    <img src="assets/img/assistant_bot.jpg" alt="Нейро-сомелье">
+    <div class="txt"><span class="badge-live">● Онлайн</span><h3>Слишком большой выбор?</h3><p>Нейро-сомелье сузит круг: назовите бюджет, вкус и повод — он предложит конкретные страны и бутылки. Спросите его прямо здесь, на сайте.</p><button class="btn btn-wine mt-s" data-open-assistant>Спросить сомелье</button></div>
+  </div></div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="fcol"><a href="index.html" class="brand"><span class="logo">🍇</span> ВИНОТЕРРА</a><p style="margin-top:14px;opacity:.8;font-size:.94rem">Интерактивный атлас виноделия мира.</p></div>
+      <div class="fcol"><h4>Разделы</h4><a href="academy.html">Академия вина</a><a href="russia.html">Россия и СНГ</a><a href="world.html">Вина мира</a><a href="islands.html">Острова</a></div>
+      <div class="fcol"><h4>Континенты</h4><a href="#countries">Европа</a><a href="#countries">Америка</a><a href="#countries">Азия и Африка</a><a href="islands.html">Острова</a></div>
+      <div class="fcol"><h4>Помощник</h4><a href="#" data-open-assistant>Нейро-сомелье</a></div>
+    </div>
+    <div class="footer-bottom">© 2026 ВИНОТЕРРА · 18+ · Наслаждайтесь вкусом, знайте меру</div>
+  </div>
+</footer>
+
+<script src="data/wine-data.js"></script>
+<script src="assets/js/api-config.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+(function(){
+  var Wd=(window.WINE&&WINE.world)||{}, esc=VT.esc;
+  var imgMap={europe:"c_europe",asia:"c_asia",africa:"c_africa",namerica:"c_namerica",samerica:"c_samerica",oceania:"c_oceania"};
+  // карточки континентов -> при клике активируют фильтр
+  (Wd.continents||[]).forEach(function(c){
+    var a=VT.el("a","card reveal"); a.href="#countries";
+    a.innerHTML="<img class='card-img' loading='lazy' src='assets/img/"+(imgMap[c.id]||"c_europe")+".jpg' alt='"+esc(c.name)+"'><div class='card-body'><h3>"+esc(c.name)+"</h3><p>"+esc(c.blurb)+"</p><span class='chip' style='margin-top:6px'>Показать страны →</span></div>";
+    a.addEventListener("click",function(){setCont(c.id);});
+    document.getElementById("cont-grid").appendChild(a);
+  });
+  // страны
+  VT.renderGrid({host:"w-grid",items:Wd.countries||[],searchId:"w-search",emptyId:"w-empty",filterBarId:"w-filter",imgBase:"assets/img/w_",flagBase:"assets/img/flags/"});
+  // программное переключение фильтра по клику на континент
+  window.setCont=function(id){
+    var bar=document.getElementById("w-filter");
+    bar.querySelectorAll(".filter-btn").forEach(function(b){
+      var on=b.getAttribute("data-cont")===id; b.classList.toggle("active",on); if(on)b.click();
+    });
+  };
+  VT.initReveal();
+})();
+</script>
+</body>
+</html>

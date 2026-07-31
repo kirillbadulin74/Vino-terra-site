@@ -1,0 +1,307 @@
+/* ===========================================================
+   ВИНОТЕРРА — дизайн-система
+   Палитра: жёлто-оранжевая + цвета вина (белое/розе/красное)
+   =========================================================== */
+:root{
+  --amber:#f5a623;
+  --amber-deep:#e8851a;
+  --honey:#f6c453;
+  --gold-soft:#fbe3a3;
+  --orange:#ef6c2e;
+  --terracotta:#c9531f;
+
+  --red:#7b1e2b;
+  --red-deep:#5a141f;
+  --rose:#e8a0a8;
+  --rose-deep:#d97a86;
+  --white-wine:#f2e2a8;
+
+  --ink:#2b1a16;
+  --ink-soft:#6b574f;
+  --cream:#fff8ec;
+  --cream-2:#fdefd6;
+  --paper:#ffffff;
+  --line:#efd9b8;
+
+  --shadow-sm:0 2px 8px rgba(123,30,43,.08);
+  --shadow:0 10px 30px rgba(123,30,43,.12);
+  --shadow-lg:0 22px 55px rgba(91,20,31,.22);
+
+  --radius:18px;
+  --radius-lg:26px;
+  --maxw:1180px;
+  --grad-warm:linear-gradient(135deg,var(--honey),var(--orange));
+  --grad-wine:linear-gradient(135deg,var(--red),var(--terracotta));
+  --grad-sun:linear-gradient(135deg,#fbe3a3,#f5a623 45%,#ef6c2e);
+  --font:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+  --serif:"Playfair Display","Georgia",serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--ink);background:var(--cream);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:var(--serif);line-height:1.15;font-weight:800;color:var(--ink)}
+.serif{font-family:var(--serif)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.section{padding:72px 0}
+.section-sm{padding:46px 0}
+
+/* ---------- Шапка ---------- */
+.nav{position:sticky;top:0;z-index:90;background:rgba(255,248,236,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;gap:18px;height:66px;max-width:var(--maxw);margin:0 auto;padding:0 22px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:800;font-size:1.32rem;color:var(--red)}
+.brand .logo{width:38px;height:38px;border-radius:50%;background:var(--grad-sun);display:grid;place-items:center;font-size:1.15rem;box-shadow:0 4px 12px rgba(239,108,46,.4)}
+.nav-links{display:flex;gap:4px;margin-left:auto;align-items:center}
+.nav-links a{padding:9px 14px;border-radius:11px;font-weight:600;font-size:.95rem;color:var(--ink-soft);transition:.2s}
+.nav-links a:hover{background:var(--cream-2);color:var(--red)}
+.nav-links a.active{background:var(--grad-warm);color:#fff;box-shadow:var(--shadow-sm)}
+.burger{display:none;margin-left:auto;background:none;border:0;cursor:pointer;width:44px;height:44px;border-radius:11px}
+.burger span{display:block;width:23px;height:2.5px;background:var(--red);margin:5px auto;border-radius:2px;transition:.3s}
+
+/* ---------- Кнопки ---------- */
+.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 26px;border-radius:14px;font-weight:700;font-size:1rem;cursor:pointer;border:0;transition:transform .18s,box-shadow .18s}
+.btn-primary{background:var(--grad-warm);color:#fff;box-shadow:var(--shadow)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.btn-wine{background:var(--grad-wine);color:#fff;box-shadow:var(--shadow)}
+.btn-wine:hover{transform:translateY(-3px)}
+.btn-ghost{background:rgba(255,255,255,.9);color:var(--red);border:2px solid var(--line)}
+.btn-ghost:hover{border-color:var(--amber);transform:translateY(-3px)}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:78vh;display:flex;align-items:center;color:#fff;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(91,20,31,.78),rgba(201,83,31,.4) 55%,rgba(245,166,35,.15));z-index:1}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero-content{position:relative;z-index:2;max-width:760px}
+.hero h1{font-size:clamp(2.3rem,5.5vw,4.2rem);color:#fff;text-shadow:0 3px 24px rgba(0,0,0,.4)}
+.hero p.lead{font-size:clamp(1.05rem,2vw,1.35rem);margin:20px 0 30px;color:#fff;opacity:.96;max-width:620px;text-shadow:0 2px 12px rgba(0,0,0,.3)}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.eyebrow{display:inline-block;padding:7px 16px;border-radius:30px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(6px);font-weight:700;font-size:.82rem;letter-spacing:.13em;text-transform:uppercase;margin-bottom:18px}
+.scroll-cue{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:3;color:#fff;font-size:1.6rem;animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,10px)}}
+
+/* ---------- Заголовки секций ---------- */
+.sec-head{text-align:center;max-width:680px;margin:0 auto 46px}
+.sec-head .eyebrow{background:var(--cream-2);border:1px solid var(--line);color:var(--terracotta)}
+.sec-head h2{font-size:clamp(1.8rem,4vw,2.8rem)}
+.sec-head p{color:var(--ink-soft);font-size:1.08rem;margin-top:12px}
+.sec-head.light h2,.sec-head.light p{color:#fff}
+
+/* ---------- Карточки ---------- */
+.grid{display:grid;gap:24px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--paper);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--line);transition:transform .22s,box-shadow .22s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.card-img{aspect-ratio:4/3;width:100%;object-fit:cover;background:var(--cream-2)}
+.card-body{padding:20px 22px;display:flex;flex-direction:column;gap:9px;flex:1}
+.card-body h3{font-size:1.28rem}
+.card .tagline{color:var(--terracotta);font-weight:600;font-size:.92rem}
+.card p{color:var(--ink-soft);font-size:.96rem}
+
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto;padding-top:6px}
+.chip{font-size:.78rem;font-weight:600;padding:5px 11px;border-radius:30px;background:var(--cream-2);color:var(--terracotta);border:1px solid var(--line)}
+.chip.red{background:#f6e3e5;color:var(--red);border-color:#eccdd0}
+.chip.white{background:#fbf3d4;color:#9a7d18;border-color:#f0e3b0}
+
+.fact{background:var(--grad-sun);color:#fff;border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.fact::after{content:"🍷";position:absolute;right:-10px;bottom:-18px;font-size:6rem;opacity:.18}
+.fact .k{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.9}
+.fact .v{font-size:1.06rem;font-weight:600;margin-top:8px;line-height:1.5}
+
+/* ---------- Фильтр-бар ---------- */
+.filterbar{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-bottom:34px}
+.filter-btn{padding:9px 18px;border-radius:30px;border:2px solid var(--line);background:var(--paper);font-weight:600;cursor:pointer;color:var(--ink-soft);transition:.2s;font-size:.93rem}
+.filter-btn:hover{border-color:var(--amber);color:var(--terracotta)}
+.filter-btn.active{background:var(--grad-warm);color:#fff;border-color:transparent;box-shadow:var(--shadow-sm)}
+.searchbox{display:flex;align-items:center;gap:10px;max-width:440px;margin:0 auto 26px;background:var(--paper);border:2px solid var(--line);border-radius:30px;padding:11px 20px}
+.searchbox:focus-within{border-color:var(--amber)}
+.searchbox input{border:0;outline:0;flex:1;font-size:1rem;background:transparent;color:var(--ink);font-family:var(--font)}
+.empty{text-align:center;color:var(--ink-soft);padding:40px;display:none}
+/* ---------- Ленты сортов ---------- */
+.grape-band{margin-bottom:40px}
+.grape-band:last-child{margin-bottom:0}
+.band-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 20px;padding-bottom:11px;border-bottom:2px solid var(--line)}
+.band-title{font-family:var(--serif);font-size:clamp(1.25rem,2.6vw,1.5rem);color:var(--terracotta)}
+.band-count{font-family:var(--serif);font-weight:700;color:var(--amber);font-size:1.05rem}
+.band-note{color:var(--ink-soft);font-size:.95rem}
+.grape-band.collapsible .band-head{cursor:pointer;user-select:none}
+.grape-band.collapsible .band-head:hover .band-title{color:var(--red)}
+.band-chevron{margin-left:auto;align-self:center;color:var(--terracotta);font-size:1.1rem;transition:transform .25s}
+.grape-band.collapsed .band-chevron{transform:rotate(-90deg)}
+.grape-band.collapsed .band-grid{display:none}
+
+/* ---------- Аккордеон ---------- */
+.acc{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:12px;background:var(--paper)}
+.acc-head{padding:18px 22px;cursor:pointer;display:flex;align-items:center;gap:12px;font-weight:700;font-family:var(--serif);font-size:1.1rem}
+.acc-head .ar{margin-left:auto;transition:.3s;color:var(--amber-deep)}
+.acc.open .ar{transform:rotate(180deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .35s ease;color:var(--ink-soft)}
+.acc-body .inner{padding:0 22px 20px}
+.acc.open .acc-body{max-height:700px}
+
+/* ---------- Таймлайн ---------- */
+.timeline{position:relative;max-width:780px;margin:0 auto;padding-left:34px}
+.timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:3px;background:var(--grad-sun);border-radius:3px}
+.tl-item{position:relative;padding:0 0 30px 8px}
+.tl-item::before{content:"";position:absolute;left:-31px;top:4px;width:16px;height:16px;border-radius:50%;background:var(--orange);border:3px solid var(--cream);box-shadow:0 0 0 3px var(--gold-soft)}
+.tl-item .yr{font-family:var(--serif);font-weight:800;color:var(--terracotta);font-size:1.1rem}
+.tl-item h4{margin:2px 0 4px}
+.tl-item p{color:var(--ink-soft);font-size:.96rem}
+
+/* ---------- Степпер производства ---------- */
+.steps{counter-reset:s;display:grid;gap:16px}
+.step{display:flex;gap:18px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 22px}
+.step .num{flex:none;width:46px;height:46px;border-radius:50%;background:var(--grad-warm);color:#fff;display:grid;place-items:center;font-family:var(--serif);font-weight:800;font-size:1.2rem;box-shadow:var(--shadow-sm)}
+.step h4{margin-bottom:3px}
+.step p{color:var(--ink-soft);font-size:.95rem}
+
+/* ---------- Бокал вина (типы) ---------- */
+.wine-types{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:18px}
+.wtype{text-align:center;background:var(--paper);border-radius:var(--radius);padding:24px 16px;border:1px solid var(--line);box-shadow:var(--shadow-sm);transition:.22s}
+.wtype:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.wtype .glass{width:54px;height:80px;margin:0 auto 12px;position:relative}
+.wtype .bowl{width:46px;height:52px;margin:0 auto;border:2.5px solid var(--ink);border-top:0;border-radius:0 0 26px 26px;position:relative;overflow:hidden}
+.wtype .bowl::before{content:"";position:absolute;left:0;right:0;bottom:0;height:60%;background:var(--wc,var(--red))}
+.wtype .stem{width:2.5px;height:20px;background:var(--ink);margin:0 auto}
+.wtype .foot{width:30px;height:3px;background:var(--ink);margin:0 auto;border-radius:2px}
+.wtype h4{font-size:1.08rem;margin-bottom:5px}
+.wtype p{font-size:.85rem;color:var(--ink-soft)}
+
+/* ---------- CTA ассистент ---------- */
+.assistant-band{background:var(--grad-wine);color:#fff;border-radius:var(--radius-lg);padding:40px;display:flex;align-items:center;gap:34px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+.assistant-band::before{content:"";position:absolute;width:300px;height:300px;background:radial-gradient(circle,rgba(245,166,35,.5),transparent 70%);right:-60px;top:-90px}
+.assistant-band img{width:150px;height:150px;border-radius:50%;object-fit:cover;border:4px solid rgba(255,255,255,.3);flex:none;position:relative;z-index:1}
+.assistant-band .txt{position:relative;z-index:1}
+.assistant-band h3{color:#fff;font-size:1.7rem}
+.assistant-band p{opacity:.95;margin:8px 0 0;max-width:560px}
+.badge-soon{display:inline-block;background:var(--honey);color:var(--red-deep);font-weight:800;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:5px 13px;border-radius:30px;margin-bottom:12px}
+.badge-live{display:inline-block;background:#2aab5b;color:#fff;font-weight:800;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:5px 13px;border-radius:30px;margin-bottom:12px}
+.tg-ico{display:inline-block;width:1.2em;height:1.2em;vertical-align:-.24em;margin-right:9px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Ccircle cx='120' cy='120' r='120' fill='%23229ED9'/%3E%3Cpath d='M52 118l117-45c5.4-2 10.2 1.2 8.4 9.5l-19.9 93.8c-1.5 6.7-5.7 8.3-11.5 5.2l-31.8-23.5-15.3 14.8c-1.7 1.7-3.1 3.1-6.4 3.1l2.3-32.4 59-53.3c2.6-2.3-.6-3.6-4-1.3l-72.9 45.9-31.4-9.8c-6.8-2.1-6.9-6.8 1.5-10z' fill='%23fff'/%3E%3C/svg%3E") no-repeat center/contain}
+.tg-handle{display:block;margin-top:10px;font-size:.85rem;opacity:.8;letter-spacing:.02em}
+.tg-link{color:inherit;font-weight:700;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.tg-link:hover{opacity:.75}
+.notice-ico{display:inline-block;width:1.35em;height:1.35em;vertical-align:-.32em;margin-right:9px;background:url("../img/icon_warning.png") no-repeat center/contain}
+
+/* ---------- Плавающая кнопка ассистента ---------- */
+.fab{position:fixed;right:22px;bottom:22px;z-index:80;display:flex;align-items:center;gap:12px;cursor:pointer;background:var(--grad-wine);color:#fff;border:0;padding:11px 20px 11px 11px;border-radius:50px;box-shadow:var(--shadow-lg);transition:transform .2s;font-family:var(--font)}
+.fab:hover{transform:translateY(-4px) scale(1.03)}
+.fab img{width:46px;height:46px;border-radius:50%;object-fit:cover;flex:none}
+.fab .fab-txt{text-align:left;line-height:1.2}
+.fab .fab-txt b{display:block;font-size:.96rem}
+.fab .fab-txt small{font-size:.72rem;opacity:.85}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(245,166,35,.5)}50%{box-shadow:0 0 0 14px rgba(245,166,35,0)}}
+.fab .dot{position:absolute;top:8px;right:18px;width:10px;height:10px;border-radius:50%;background:var(--honey);animation:pulse 2s infinite}
+
+.modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.modal-bg{position:absolute;inset:0;background:rgba(43,26,22,.6);backdrop-filter:blur(4px)}
+.modal-card{position:relative;background:var(--paper);border-radius:var(--radius-lg);max-width:440px;width:100%;padding:38px 32px;text-align:center;box-shadow:var(--shadow-lg);animation:pop .3s}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+.modal-card img{width:120px;height:120px;border-radius:50%;object-fit:cover;margin:0 auto 16px;border:4px solid var(--gold-soft)}
+.modal-card h3{font-size:1.5rem;margin-bottom:8px}
+.modal-card p{color:var(--ink-soft)}
+.modal-close{position:absolute;top:14px;right:16px;background:var(--cream-2);border:0;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1.1rem;color:var(--ink)}
+
+/* ---------- Чат Нейро-сомелье ---------- */
+.chat-card{max-width:620px;text-align:left;padding:24px}
+.chat-head{display:flex;align-items:center;gap:14px;padding-right:42px;margin-bottom:16px}
+.chat-head img{width:66px;height:66px;margin:0;border-width:3px}
+.chat-head h3{margin:3px 0 0}.chat-head p{font-size:.88rem}
+.chat-head .badge-live{margin-bottom:0}
+.chat-log{height:min(50vh,430px);overflow-y:auto;background:var(--cream-2);border:1px solid var(--gold-soft);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.chat-msg{max-width:88%;padding:10px 13px;border-radius:14px;white-space:pre-wrap;line-height:1.45;font-size:.94rem}
+.chat-msg.markdown{white-space:normal}
+.chat-msg.markdown p{margin:0 0 8px;color:inherit}.chat-msg.markdown p:last-child{margin-bottom:0}
+.chat-msg.markdown ul{margin:5px 0 9px;padding-left:20px;display:flex;flex-direction:column;gap:5px}
+.chat-msg.markdown h4{margin:7px 0 5px;color:var(--red);font-size:1rem}
+.bot-msg{align-self:flex-start;background:#fff;border:1px solid rgba(91,20,31,.1)}
+.user-msg{align-self:flex-end;background:var(--red);color:#fff}
+.pending{opacity:.65}.error-msg{color:#8b1e2d;border-color:#d9a0a8}
+.chat-feedback{align-self:flex-start;display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--ink-soft);margin:-4px 0 2px 4px}
+.chat-feedback button{background:#fff;border:1px solid var(--gold-soft);border-radius:10px;padding:3px 9px;cursor:pointer;font-size:.9rem}
+.chat-feedback button:hover{border-color:var(--terracotta)}
+.chat-feedback button.voted{background:var(--gold-soft)}
+.chat-feedback button:disabled{cursor:default;opacity:.6}
+.chat-feedback button.voted:disabled{opacity:1}
+.chat-form{display:grid;grid-template-columns:1fr auto;gap:10px;margin-top:12px;align-items:end}
+.chat-form textarea{width:100%;resize:vertical;max-height:130px;border:1px solid var(--gold-soft);border-radius:12px;padding:11px 12px;font:inherit;color:var(--ink);background:#fff}
+.chat-form textarea:focus{outline:2px solid rgba(201,83,31,.25);border-color:var(--terracotta)}
+.chat-form button{min-height:46px}.chat-form button:disabled{opacity:.55;cursor:wait}
+.chat-note{text-align:center;font-size:.76rem;margin-top:10px;color:var(--ink-soft)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ---------- Стат-лента ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.stat .n{font-family:var(--serif);font-weight:800;font-size:2.6rem;background:var(--grad-sun);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.stat .l{color:var(--ink-soft);font-weight:600;margin-top:4px;font-size:.95rem}
+
+/* ---------- Подвал ---------- */
+.footer{background:var(--red-deep);color:#f5d9c4;padding:54px 0 28px;margin-top:40px}
+.footer a{color:#f5d9c4;opacity:.8}
+.footer a:hover{opacity:1;color:var(--honey)}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;margin-bottom:34px}
+.footer h4{color:#fff;margin-bottom:14px;font-size:1.05rem}
+.footer .fcol a{display:block;padding:4px 0;font-size:.94rem}
+.footer .brand{color:#fff}
+.footer .brand .logo{box-shadow:none}
+.footer-bottom{border-top:1px solid rgba(245,217,196,.2);padding-top:20px;text-align:center;font-size:.86rem;opacity:.7}
+
+/* ---------- Интро страниц ---------- */
+.page-hero{position:relative;color:#fff;padding:90px 0 64px;overflow:hidden}
+.page-hero::before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(91,20,31,.82),rgba(201,83,31,.55));z-index:1}
+.page-hero .hero-bg{z-index:0}
+.page-hero .wrap{position:relative;z-index:2}
+.page-hero h1{font-size:clamp(2rem,4.5vw,3.3rem);color:#fff;text-shadow:0 3px 18px rgba(0,0,0,.35)}
+.page-hero p{font-size:1.12rem;max-width:640px;margin-top:14px;opacity:.96}
+.crumbs{font-size:.88rem;opacity:.85;margin-bottom:14px}
+.crumbs a:hover{color:var(--honey)}
+
+/* анимация появления — скрываем ТОЛЬКО когда JS активен (html.js),
+   иначе (ошибка/отключённый JS) контент виден сразу */
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
+.js .reveal.in{opacity:1;transform:none}
+
+.center{text-align:center}
+.mt-s{margin-top:14px}.mt{margin-top:26px}.mt-l{margin-top:44px}
+.tint{background:var(--cream-2)}
+.tint-wine{background:linear-gradient(160deg,#fff8ec,#fbe3d3)}
+
+/* ---------- Адаптив ---------- */
+@media(max-width:980px){
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .g4{grid-template-columns:repeat(2,1fr)}
+  .assistant-band{flex-direction:column;text-align:center;padding:32px 24px}
+}
+@media(max-width:760px){
+  .nav-links{position:fixed;top:66px;right:0;width:min(78vw,300px);height:calc(100vh - 66px);flex-direction:column;align-items:stretch;gap:6px;background:var(--cream);padding:20px;box-shadow:var(--shadow-lg);transform:translateX(110%);transition:.3s}
+  .nav-links.open{transform:none}
+  .nav-links a{padding:14px 16px;font-size:1.05rem}
+  .burger{display:block}
+  .burger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+  .g2,.g3{grid-template-columns:1fr}
+  .section{padding:50px 0}
+  .hero{min-height:72vh}
+  .fab .fab-txt{display:none}
+  .fab{padding:10px;right:16px;bottom:16px}
+  .chat-card{padding:18px 14px}.chat-form{grid-template-columns:1fr}.chat-form button{width:100%}.chat-log{height:48vh}
+}
+@media(max-width:440px){
+  .g4{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .wine-types{grid-template-columns:1fr 1fr}
+}
+
+/* Флаг России — CSS-триколор (эмодзи 🇷🇺 не рендерится в Windows) */
+.flag-ru{display:inline-block;width:1.15em;height:.8em;border-radius:2px;
+  vertical-align:-.08em;margin-right:.15em;border:1px solid rgba(0,0,0,.15);
+  background:linear-gradient(#fff 0 33.33%,#0039A6 33.33% 66.66%,#D52B1E 66.66% 100%)}
+/* Флаги стран (SVG) — эмодзи-флаги не рендерятся в Windows */
+.flag{display:inline-block;width:1.5em;height:auto;aspect-ratio:4/3;border-radius:3px;
+  vertical-align:-.18em;margin-right:.4em;object-fit:cover;border:1px solid rgba(0,0,0,.15);
+  box-shadow:0 1px 2px rgba(0,0,0,.12)}

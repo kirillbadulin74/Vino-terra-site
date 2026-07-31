@@ -1,0 +1,15 @@
+{
+  "base_dir": "knowledge_base",
+  "chunk_size": 500,
+  "chunk_overlap": 100,
+  "embedding_model": "text-embedding-3-small",
+  "source_files": [
+    "wine_general.md",
+    "wine_islands.md",
+    "wine_persons.md",
+    "wine_russia_and_ussr.md",
+    "wine_world.md"
+  ],
+  "chunk_count": 2824,
+  "vector_dimensions": 1536
+}
