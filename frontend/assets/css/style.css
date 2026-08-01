@@ -108,7 +108,7 @@ h1,h2,h3,h4{font-family:var(--serif);line-height:1.15;font-weight:800;color:var(
 
 .fact{background:var(--grad-sun);color:#fff;border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);position:relative;overflow:hidden}
 .fact::after{content:"🍷";position:absolute;right:-10px;bottom:-18px;font-size:6rem;opacity:.18}
-.fact .k{font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.9}
+.fact .k{font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
 .fact .v{font-size:1.06rem;font-weight:600;margin-top:8px;line-height:1.5}
 
 /* ---------- Фильтр-бар ---------- */

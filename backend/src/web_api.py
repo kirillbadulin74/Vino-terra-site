@@ -40,7 +40,7 @@ class HistoryMessage(BaseModel):
 
 class ChatRequest(BaseModel):
     question: str = Field(min_length=2, max_length=1200)
-    history: list[HistoryMessage] = Field(default_factory=list, max_length=6)
+    history: list[HistoryMessage] = Field(default_factory=list, max_length=10)
 
     @field_validator("question")
     @classmethod

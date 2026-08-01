@@ -58,13 +58,29 @@
     document.body.appendChild(modal);
 
     var form=modal.querySelector(".chat-form"), input=form.querySelector("textarea"), log=modal.querySelector(".chat-log"), submit=form.querySelector("button[type=submit]");
-    var chatHistory=[];
+    /* история диалога переживает переходы между страницами (sessionStorage):
+       иначе follow-up («А Черчилль?») на новой странице уходит без контекста и
+       отвергается гардом. Сбрасывается при закрытии вкладки — как новая сессия. */
+    var chatHistory=[], answerCount=0;
+    try{
+      var saved=JSON.parse(sessionStorage.getItem("vtChat")||"{}");
+      if(Array.isArray(saved.history))chatHistory=saved.history;
+      if(typeof saved.answers==="number")answerCount=saved.answers;
+    }catch(e){}
+    function persist(){try{sessionStorage.setItem("vtChat",JSON.stringify({history:chatHistory,answers:answerCount}));}catch(e){}}
     var isLocal=/^(localhost|127\.0\.0\.1)$/.test(location.hostname)||location.protocol==="file:";
     /* пустой apiBase = тот же домен (nginx проксирует /api); локально — dev-API на :8080 */
     var apiBase=(window.VINOTERRA_API_URL||(isLocal?"http://127.0.0.1:8080":"")).replace(/\/$/,"");
     function addMessage(text,cls){var msg=el("div","chat-msg "+cls);msg.textContent=text;log.appendChild(msg);log.scrollTop=log.scrollHeight;return msg;}
+    /* восстановить прошлые реплики сессии в окно чата */
+    chatHistory.forEach(function(m){
+      if(m.role==="user"){addMessage(m.content,"user-msg");}
+      else{var b=addMessage("","bot-msg markdown");b.innerHTML=assistantMarkdown(m.content);}
+    });
     function addFeedback(interactionId){
-      if(!interactionId)return;
+      /* как в Telegram-боте: оценка не под каждым ответом, а под каждым 3-м
+         содержательным (отказы и ошибки не считаются — оценивать нечего) */
+      if(!interactionId||answerCount%3!==0)return;
       var box=el("div","chat-feedback");
       box.innerHTML='<span>Ответ помог?</span><button type="button" data-vote="up" aria-label="Полезный ответ">👍</button><button type="button" data-vote="down" aria-label="Неудачный ответ">👎</button>';
       box.querySelectorAll("button").forEach(function(b){
@@ -90,10 +106,22 @@
       var question=input.value.trim(); if(!question||submit.disabled)return;
       addMessage(question,"user-msg"); input.value=""; submit.disabled=true;
       var pending=addMessage("Подбираю ответ…","bot-msg pending");
-      fetch(apiBase+"/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({question:question,history:chatHistory.slice(-6)})})
+      fetch(apiBase+"/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({question:question,history:chatHistory.slice(-10)})})
         .then(function(response){return response.json().catch(function(){return {};}).then(function(body){if(!response.ok)throw new Error(body.detail&&typeof body.detail==="string"?body.detail:"Сервис временно недоступен");return body;});})
-        .then(function(body){var answer=body.answer||"Ответ не получен.";pending.classList.remove("pending");pending.classList.add("markdown");pending.innerHTML=assistantMarkdown(answer);chatHistory.push({role:"user",content:question},{role:"assistant",content:answer});chatHistory=chatHistory.slice(-6);addFeedback(body.interaction_id);})
-        .catch(function(error){pending.classList.remove("pending");pending.classList.add("error-msg");pending.textContent=error.message||"Не удалось связаться с помощником.";})
+        .then(function(body){
+          var answer=body.answer||"Ответ не получен.";
+          pending.classList.remove("pending");pending.classList.add("markdown");pending.innerHTML=assistantMarkdown(answer);
+          /* отказы («нет релевантной информации») не пишем в историю и не считаем
+             содержательными — как в Telegram-боте */
+          if(answer.indexOf("нет релевантной информации")===-1){
+            chatHistory.push({role:"user",content:question},{role:"assistant",content:answer});
+            chatHistory=chatHistory.slice(-10);
+            answerCount++;
+            addFeedback(body.interaction_id);
+          }
+          persist();
+        })
+        .catch(function(error){pending.classList.remove("pending");pending.classList.add("error-msg");var m=error&&error.message;pending.textContent=(m&&/[а-яА-ЯёЁ]/.test(m))?m:"Не удалось связаться с помощником. Попробуйте ещё раз через минуту.";})
         .finally(function(){submit.disabled=false;input.focus();});
     });
   }
