@@ -13,3 +13,6 @@ _shots/
 HANDOFF.md
 feedback/
 .claude/settings.local.json
+
+# Архивы для переноса на сервер
+*.tar.gz
