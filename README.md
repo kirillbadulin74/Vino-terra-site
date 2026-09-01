@@ -1,8 +1,10 @@
-# ВИНОТЕРРА — vino-terra.ru
+# ВИНОТЕРРА — сайт-путеводитель по вину с ИИ-помощником
 
 Сайт-путеводитель по миру вина с ИИ-помощником «Нейро-сомелье» прямо на сайте
-и в Telegram (@VinoTerra_AI_bot). Версия для развёртывания на собственном VPS;
-статическая версия без чата живёт отдельно на GitHub Pages.
+и в Telegram (@VinoTerra_AI_bot). Это версия для развёртывания на собственном
+VPS: статика + Python-бэкенд. Домен `vino-terra.ru` — в планах, пока не
+подключён; статическая версия сайта без чата опубликована отдельно на
+[GitHub Pages](https://kirillbadulin74.github.io/Vinoterra-site-html/).
 
 ```
 frontend/   статика сайта (HTML/CSS/JS + данные data/*.json → wine-data.js)
@@ -15,7 +17,7 @@ deploy/     nginx-конфиг, systemd-юниты, DEPLOY.md — инструк
 - **Сайт** — статические страницы; карточки стран/сортов рендерятся из
   `frontend/data/wine-data.js`. Правки контента: `frontend/CONTRIBUTING.md`.
 - **Нейро-сомелье** — единое RAG-ядро (`backend/src/`) на базе знаний
-  `backend/knowledge_base/` (5 файлов, 2824 чанка). Два транспорта:
+  `backend/knowledge_base/` (5 файлов, 2829 чанков). Два транспорта:
   - `src/web_api.py` — FastAPI: `/api/chat`, `/api/feedback`, `/api/health`
     (чат-виджет на сайте);
   - `src/telegram_bot.py` — Telegram-бот (long polling).
