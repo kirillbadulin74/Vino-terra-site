@@ -141,7 +141,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=_csv_env(
         "ALLOWED_ORIGINS",
-        "http://localhost:8000,http://127.0.0.1:8000,https://vino-terra.ru,https://www.vino-terra.ru",
+        "http://localhost:8000,http://127.0.0.1:8000",
     ),
     allow_credentials=False,
     allow_methods=["GET", "POST", "OPTIONS"],

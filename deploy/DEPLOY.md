@@ -1,4 +1,4 @@
-# Развёртывание vino-terra.ru на VPS
+# Развёртывание VINOTERRA на VPS
 
 Пошаговая инструкция «арендовал сервер → сайт работает». Рассчитана на
 Ubuntu 22.04/24.04 LTS, сервер в Европе (прямой доступ к api.openai.com,
@@ -8,7 +8,7 @@ VPN не нужен). Минимальная конфигурация: 1 vCPU, 1
 
 ```
 Интернет
-  └── nginx :80/:443 (vino-terra.ru, сертификат Let's Encrypt)
+  └── nginx :80/:443 (ваш домен, сертификат Let's Encrypt)
         ├── /            → статика  /opt/vinoterra/frontend
         └── /api/*       → proxy    127.0.0.1:8080 (uvicorn, FastAPI)
 systemd:
@@ -20,14 +20,14 @@ systemd:
 
 ## 0. DNS
 
-У регистратора домена vino-terra.ru создать A-записи на IP сервера:
+Если у проекта появится домен, у регистратора создайте A-записи на IP сервера:
 
 ```
-vino-terra.ru      A  <IP сервера>
-www.vino-terra.ru  A  <IP сервера>
+<ваш-домен>      A  <IP сервера>
+www.<ваш-домен>  A  <IP сервера>
 ```
 
-DNS может обновляться до пары часов; проверка: `ping vino-terra.ru`.
+DNS может обновляться до пары часов; проверка: `ping <ваш-домен>`.
 
 ## 1. Первичная настройка сервера
 
@@ -101,8 +101,8 @@ cd /opt/vinoterra/backend && .venv/bin/python -c \
 Две половины настройки имеют смысл только вместе.
 
 Опционально: `FALLBACK_API_KEY` (vedai.by) — включает фоллбэк DeepSeek при
-сбоях OpenAI. `ALLOWED_ORIGINS` уже содержит vino-terra.ru в дефолте web_api,
-но в .env лучше указать явно.
+сбоях OpenAI. После появления домена укажите его в `ALLOWED_ORIGINS`; по
+умолчанию web_api разрешает только локальные адреса разработки.
 
 Права: `chown -R vinoterra:vinoterra /opt/vinoterra/app && chmod 600 .env`.
 
@@ -133,20 +133,20 @@ curl http://127.0.0.1:8080/api/health   # {"status":"ok","chunks":2824,...}
 ## 7. nginx и HTTPS
 
 ```bash
-cp /opt/vinoterra/app/deploy/nginx-vino-terra.conf /etc/nginx/sites-available/vino-terra.ru
-ln -s /etc/nginx/sites-available/vino-terra.ru /etc/nginx/sites-enabled/
+cp /opt/vinoterra/app/deploy/nginx-vino-terra.conf /etc/nginx/sites-available/vinoterra-site
+ln -s /etc/nginx/sites-available/vinoterra-site /etc/nginx/sites-enabled/
 rm -f /etc/nginx/sites-enabled/default
 nginx -t && systemctl reload nginx
 
 # сертификат (когда DNS уже указывает на сервер):
-certbot --nginx -d vino-terra.ru -d www.vino-terra.ru
+certbot --nginx -d <ваш-домен> -d www.<ваш-домен>
 ```
 
 certbot сам перепишет конфиг на HTTPS с редиректом и настроит автопродление.
 
 ## 8. Финальная проверка
 
-- https://vino-terra.ru — сайт открывается, стили и картинки на месте;
+- https://<ваш-домен> — сайт открывается, стили и картинки на месте;
 - кнопка «Нейро-сомелье» → чат → вопрос «Что такое танины в вине?» → ответ;
 - 👍/👎 под ответом нажимаются («Спасибо за оценку!»);
 - Telegram: бот отвечает (@VinoTerra_AI_bot);
