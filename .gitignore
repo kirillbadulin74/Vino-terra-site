@@ -6,11 +6,15 @@
 Thumbs.db
 .DS_Store
 __pycache__/
+*.log
+*.tmp
 
 # Рабочее
 _cmp/
 _shots/
+# Бэкапы оригиналов изображений до перегенерации — хранятся только локально.
 frontend/assets/img/_orig_1254_backup/
+frontend/assets/img/_orig_regen_backup/
 HANDOFF.md
 feedback/
 .claude/settings.local.json
